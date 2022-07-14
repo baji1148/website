@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title>
+            js validations
+        </title>
+        <link rel="stylesheet" href="style.css">
+      
+    </head>
+    <body>
+        <center>
+        <header>Registration Form</header>
+        <div id="width"> 
+        <div class="divison">
+            <h1>Registration Form</h1>
+            <FORM action="/baji.php" method="post" onsubmit=" return passCheck()">
+
+            <table align="center" class="table1">
+        
+                <tr><td id="fn"><label class="b1">Firstname:</label></td><TD><input required type="text" id="firstname"placeholder="enter first name" ></TD></tr>
+                <tr><td id="mn"><label class="b1">Middlename:</label></td><TD><input required type="text" id="midname"placeholder="enter middle name" ></TD></tr>
+
+
+                <tr><td id="ln"> <label class="b1">Lastname:</label></td><TD><div class="form-control"><input required type="text"id="lastname" placeholder="enter last name"></div></TD></tr>
+                <tr><td id="fname"><label class="b1">Fullname:</label></td><TD><div class="form-control"><input required readonly type="text" id="fulname"placeholder="enter fullname"></div></TD></tr>
+                <tr><td id="no1"><label class="b1">Email:</label></td><TD><div class="form-control"><input required type="text" id="email"placeholder="enter email"></div></TD></tr>
+                <tr><td id="dob"><label class="b1">Date oF Birth:</label></td><td><div class="form-control"> <input type="date" id="start" name="trip-start" ></div></td></tr>
+                <tr><td id="file"><label class="b1"> upload file</label></td><td> <input id="image" type="file" value="upload file"></td></tr>
+               
+
+                <tr><td id="ep"><label class="b1">password:</label></td><TD><div class="form-control"><input required type="password" id="pass"placeholder="enter password"></div></TD></tr>
+                <tr><td></td></td><td><input type="checkbox" id="cb" onclick="myFunction()"> <label id="lb" style="font-size: 15px;"> show password</label></td></tr>
+
+                <tr><td id="phno"><label>Mobile number:</label></td><TD><div class="form-control">
+                    <select id="sel">
+                        <option id="ind" value="india">india</option>
+                        <option id="us" value="usa"> usa</option>
+                    </select>
+                    <input required type="NUMBER" id="pno" placeholder="enter mobile number"></div></TD></tr>
+                
+                <tr><td id="submit" ><label>Submit/reset:</label></td><TD><div class="form-control"><input type="submit" title="submit"class="BG" id="sub" value="SUBMIT"><input type="reset" CLASS="BG" id="res" value="RESET"></div></TD></tr>
+            </FORM>
+                
+
+            </table>
+        </div>
+    </div>
+
+    <footer style="background-color:rgb(230, 71, 13)"> <p>copyrights@2022</p></footer>
+    </center>
+   
+    <script>
+        document.getElementById("firstname").addEventListener("keyup",fn) 
+        document.getElementById("midname").addEventListener("keyup",fn)  
+        document.getElementById("lastname").addEventListener("keyup",fn)  
+        document.getElementById("fulname").addEventListener("mouseenter",fullname)
+        document.getElementById("email").addEventListener("keyup",emailValidate)
+        document.getElementById("pass").addEventListener("keyup",passValidate)
+        document.getElementById("pno").addEventListener("keyup",mobileValidate)
+       
+
+        var ren=/[\d\@\#\!\$\|\$\%\^\&\*\(\)\[\]\"\"\>\<\/]/i
+        function fn(){
+            if(!(ren.test(this.value)) && (this.value).length>=3){
+                this.style.border="2px solid green"
+            }
+            else{
+                this.style.border="2px solid red"
+            }
+        }
+        function fullname(){
+            this.value=document.getElementById("firstname").value+" "+document.getElementById("midname").value+" "+document.getElementById("lastname").value
+        }
+        function emailValidate(){
+            var p=/^[A-Za-z0-9_]*@[A-Za-z]+\.[a-zA-Z]{2,3}$/
+            if(p.test(this.value)){
+                this.style.border="2px solid green"
+            }                                     
+            else{
+                this.style.border="2px solid red"
+            }                                         
+        }
+        function passValidate(){
+            var rep=/[\d\@\#\$\%\^\&\*\(\)\!]+/gi
+            if(rep.test(this.value) && this.value.length>6){
+                this.style.border="3px solid green"
+            }
+            else{
+                this.style.border="3px solid red"
+            }
+        }
+        function myFunction() {
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            } 
+           
+         }
+        function passCheck(){
+            if(document.getElementById("pass").value===this.value){
+                this.style.border="3px solid green"
+               
+            }
+            else{
+                this.style.border="3px solid red";
+                alert('password not matching')
+            }
+        }
+        function mobileValidate(){
+            var re=/[a-z\!\@\#\%]/gi
+            if(document.getElementById("ind").value=="india"){
+
+                if(!(re.test(this.value)) && this.value.length==10){
+                    this.style.border="3px solid green"
+                }
+                else{
+                    this.style.border="3px solid red"
+                }
+            }
+
+           
+            
+            else if(document.getElementById("usa").value=="usa"){
+                var ure=/^(\d{3}\-\d{3}\-\d{4})$/
+                if(ure.test(this.value)){
+                    console.log("green")
+                    this.style.border="3px solid green"
+                }
+                else{
+                    this.style.border="3px solid red"
+                }
+            }
+            
+
+        }
+       
+        
+
+
+    </script> 
+   </body>
+</html>
